@@ -19,4 +19,16 @@ section {
     padding: 2rem;
     gap: 50px;
 }
-
+h4{
+    color: antiquewhite;
+}
+.pagina{
+    color: aliceblue;
+}
+span{
+    font-size: 0.8em;
+    color: aliceblue;
+}
+img {
+    width: 200px;
+}
