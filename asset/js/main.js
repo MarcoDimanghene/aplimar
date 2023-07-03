@@ -1,5 +1,5 @@
 const form = document.getElementById('form');
-const pjInput = document.querySelector('.search-input');
+const searchInput = document.querySelector('.search-input');
 const cardContainer = document.querySelector('.card-cont');
 const lblMensaje = document.getElementById('mensaje')
 const caja = document.getElementById('caja');
@@ -9,7 +9,7 @@ const hashval="a4023ba1a3737872df6b390786e671de";
 const prevButton = document.getElementById("prevbtn");
 const nextButton = document.getElementById("nextbtn");
 const pageIndicator = document.getElementById("page-indicator");
-// https://gateway.marvel.com:443/v1/public/characters?limit=100&offset= VER LIMITE Y OFFSET SON LAS PAGINAS
+const btnReset = document.getElementById("btnReset")
 
 const perPage = 20;
 let currentPage = 0;
@@ -42,8 +42,6 @@ const renderPjList = heroeList => {
 
 };
 
-
-
 const requestpj = async (offset) => {
     const baseURL = `https://gateway.marvel.com:443/v1/public/characters?`;
 
@@ -65,7 +63,42 @@ const requestpj = async (offset) => {
     console.log(data);
     
 };
+//busqueda
+form.addEventListener('submit', event => {
+    event.preventDefault(); // Evita que se recargue la página al enviar el formulario
 
+    const searchValue = searchInput.value.trim();
+    if (searchValue !== '') {
+        // Realizar solicitud de búsqueda
+        searchCharacters(searchValue);
+        lblMensaje.textContent=""
+    }
+    else{
+        lblMensaje.textContent= "Ingrese un personaje a buscar"
+    }
+    form.reset()
+    
+});
+
+const searchCharacters = async searchTerm => {
+    const baseURL = `https://gateway.marvel.com:443/v1/public/characters?`;
+
+    const query = `nameStartsWith=${encodeURIComponent(searchTerm)}&ts=${ts}&apikey=${pubkickey}&hash=${hashval}`;
+
+    const response = await fetch(baseURL + query);
+    const json = await response.json();
+
+    const results = json.data.results;
+
+    renderPjList(results);
+    if (results.length === 0) {
+        lblMensaje.textContent = "No se encontró el personaje.";
+
+    } else {
+        lblMensaje.textContent = "";
+    }
+    btnReset.classList.remove("hidden")
+};
 // Paginas
 const gotoPrevius = () => {
     if (currentPage > 0) {
@@ -84,4 +117,16 @@ const gotoNext = () => {
 prevButton.addEventListener('click', gotoPrevius);
 nextButton.addEventListener('click', gotoNext);
 
-requestpj(0); // Inicializar la solicitud con offset = 0
+const volver=()=>{
+    requestpj(0)
+    btnReset.classList.add ("hidden")
+    lblMensaje.textContent = "";
+};
+btnReset.addEventListener("click",volver)
+const init = () =>{
+    if (searchInput.value == "") {requestpj(0);}
+    else (requestpj(results))
+    
+};
+
+init();
