@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./asset/css/index.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Marvel</title>
 </head>
 <body>
     <h1>Personajes de Marvel</h1>
+    <div class="reset">
     <form action="" id="form">
-        <button type="submit">Buscar</button>
+        <button clase="buscar" type="submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
         <input type="text" name="heroe" autocomplete="off" placeholder="Busca el Personaje..." class="search-input">
     </form>
-    <button id="btnReset" class="hidden">Volver</button>
-    <label for="" id="mensaje"></label>
+    
+        <button id="btnReset" class="hidden"><i class="fa-sharp fa-solid fa-rotate"></i></button>
+    </div>
+    <label class="error" id="mensaje"></label>
     <section>
         <div class="card-cont" id="caja">
             <!-- Aca van los pj traidos de la api -->
         </div>
         <div id="pag">
-            <button id="prevbtn" class="prev" disabled>Anterior</button>
+            <button id="prevbtn" class="prev" disabled><i class="fa-solid fa-arrow-left"></i></button>
             <span class="pagina" id="page-indicator"></span>
-            <button id="nextbtn">Siguiente</button>
+            <button id="nextbtn"><i class="fa-solid fa-arrow-right"></i></button>
         </div>
     </section>
 

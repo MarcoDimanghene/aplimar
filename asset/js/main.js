@@ -24,11 +24,11 @@ const renderPj = results => {
     <img src="${thumbnail.path}.jpg" alt="${name}" />
     <h2>${name.toUpperCase()}</h2>
     <p>INFO: ${description}}</p>
-    <h6> COMICS: ${comicNames}</h6>
     
     </div>
 `;
 };
+//<h6> COMICS: ${comicNames}</h6>
 // Funcion para renderizar las cards
 const renderPjList = heroeList => {
     caja.innerHTML =heroeList.map(renderPj).join("");
