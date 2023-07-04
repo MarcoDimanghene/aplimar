@@ -35,7 +35,7 @@ const renderPj = results => {
     const comicNames = comics.items.map(item => item.name).join(' -|- ');
     return `
     <div class="card-cont">
-    <img src="${thumbnail.path}.jpg" alt="${name}" />
+    <img src="${thumbnail.path}.${thumbnail.extension}" alt="${name}" />
     <h2>${name.toUpperCase()}</h2>
     <p> COMICS: ${comicNames}</p>
     <p>INFO: ${description}</p>
