@@ -34,16 +34,20 @@ const renderPj = results => {
     const { name, description, thumbnail, comics} = results;
     const comicNames = comics.items.map(item => item.name).join(' -|- ');
     return `
-    <div class="card-cont">
-    <img src="${thumbnail.path}.${thumbnail.extension}" alt="${name}" />
-    <h2>${name.toUpperCase()}</h2>
-    <p> COMICS: ${comicNames}</p>
-    <p>INFO: ${description}</p>
     
+    <div class="card-cont">
+    <div>
+        <h2>${name.toUpperCase()}</h2>
+    </div>
+    <div>
+        <img src="${thumbnail.path}.${thumbnail.extension}" alt="${name}" />
+    </div class="info">
+        <p> COMICS: ${comicNames}</p>
+        <p>INFO: ${description}</p>
     </div>
 `;
 };
-//
+
 // Funcion para renderizar las cards
 const renderPjList = heroeList => {
     caja.innerHTML =heroeList.map(renderPj).join("");
