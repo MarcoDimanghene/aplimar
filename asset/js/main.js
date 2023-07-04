@@ -11,20 +11,34 @@ const nextButton = document.getElementById("nextbtn");
 const pageIndicator = document.getElementById("page-indicator");
 const btnReset = document.getElementById("btnReset")
 
+
 const perPage = 20;
 let currentPage = 0;
+const ocultar =()=>{
+    pageIndicator.classList.add('hidden')
+    prevButton.classList.add('hidden')
+    nextButton.classList.add('hidden')
+    btnReset.classList.remove("hidden")
+    return "hidden"
+};
+const ver =()=>{
+    pageIndicator.classList.remove('hidden')
+    prevButton.classList.remove('hidden')
+    nextButton.classList.remove('hidden')
+    btnReset.classList.add("hidden")
+    return "show"
+};
 
 // Funcion para renderizar 
 const renderPj = results => {
     const { name, description, thumbnail, comics} = results;
-    const comicNames = comics.items.map(item => item.name).join(', ');
+    const comicNames = comics.items.map(item => item.name).join(' -|- ');
     return `
     <div class="card-cont">
-    
     <img src="${thumbnail.path}.jpg" alt="${name}" />
     <h2>${name.toUpperCase()}</h2>
-    <h6> COMICS: ${comicNames}</h6>
-    <p>INFO: ${description}}</p>
+    <p> COMICS: ${comicNames}</p>
+    <p>INFO: ${description}</p>
     
     </div>
 `;
@@ -64,6 +78,7 @@ const requestpj = async (offset) => {
     console.log(data);
     
 };
+
 //busqueda
 form.addEventListener('submit', event => {
     event.preventDefault(); // Evita que se recargue la página al enviar el formulario
@@ -98,7 +113,9 @@ const searchCharacters = async searchTerm => {
     } else {
         lblMensaje.textContent = "";
     }
-    btnReset.classList.remove("hidden")
+    
+    ocultar();
+    
 };
 // Paginas
 const gotoPrevius = () => {
@@ -120,7 +137,8 @@ nextButton.addEventListener('click', gotoNext);
 
 const volver=()=>{
     requestpj(0)
-    btnReset.classList.add ("hidden")
+    ver();
+    
     lblMensaje.textContent = "";
 };
 btnReset.addEventListener("click",volver)

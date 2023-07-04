@@ -24,8 +24,12 @@ section {
     padding: 2rem;
     gap: 50px;
 }
-h4{
+p{
     color: antiquewhite;
+}
+h2{
+    font-size: 1.5em;
+    color: #fff;
 }
 .pagina{
     color: aliceblue;
@@ -48,6 +52,7 @@ button {
     color: #fff;
 }
 .error{
+    margin-left: 30px;
     font-size: 1.2em;
     color: red;
 }
